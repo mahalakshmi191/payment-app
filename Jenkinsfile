@@ -1,15 +1,11 @@
 pipeline {
     agent any
 
-    environment {
-        FEATURE_PAYMENT_V2 = "false"   // default OFF
-    }
-
     stages {
-
         stage('Checkout') {
             steps {
-                git 'https://github.com/mahalakshmi191/payment-app.git'
+                deleteDir()
+                git branch: 'main', url: 'https://github.com/mahalakshmi191/payment-app.git'
             }
         }
 
@@ -19,7 +15,7 @@ pipeline {
             }
         }
 
-        stage('Run App') {
+        stage('Run') {
             steps {
                 sh 'java PaymentApp'
             }
