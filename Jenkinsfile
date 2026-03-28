@@ -1,14 +1,11 @@
 pipeline {
     agent any
 
-    stages {
-        stage('Checkout') {
-            steps {
-                deleteDir()
-                git branch: 'main', url: 'https://github.com/mahalakshmi191/payment-app.git'
-            }
-        }
+    environment {
+        FEATURE_PAYMENT_V2 = "true"   // 👈 ADD HERE
+    }
 
+    stages {
         stage('Build') {
             steps {
                 sh 'javac PaymentApp.java'
